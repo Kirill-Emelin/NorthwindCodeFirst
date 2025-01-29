@@ -6,8 +6,9 @@
         {
             using (var context = new ApplicationContext())
             {
+                context.Database.EnsureDeleted();
                 context.Database.EnsureCreated();
-                Console.WriteLine("База данных создана, таблица Categories доступна.");
+                Console.WriteLine("Таблица Categories создана с нужной структурой!");
             }
         }
     }

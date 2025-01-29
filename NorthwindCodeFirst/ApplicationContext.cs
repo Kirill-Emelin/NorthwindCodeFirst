@@ -8,7 +8,19 @@ namespace NorthwindCodeFirst
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source=Northwind.db");
+            optionsBuilder.UseSqlServer("Server=.\\MYSQLEXPRESS;Database=NorthwindTest;Trusted_Connection=True;TrustServerCertificate=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Category>(entity =>
+            {
+                entity.Property(c => c.CategoryName)
+                    .HasMaxLength(15); 
+
+                entity.Property(c => c.Description)
+                    .HasColumnType("ntext"); 
+            });
         }
     }
 }
